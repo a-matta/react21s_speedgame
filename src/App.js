@@ -59,6 +59,7 @@ class App extends Component {
               color={c.color}
               id={c.id}
               click={this.clickHandler}
+              active={this.state.current === c.id}
             />
           ))}
         </div>
