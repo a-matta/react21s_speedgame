@@ -18,7 +18,14 @@ class App extends Component {
 
   timer = undefined;
 
-  clickHandler = () => {
+  clickHandler = (id) => {
+    console.log("you clicked: ", id);
+
+    if (this.state.current !== id) {
+      this.stopHandler();
+      return;
+    }
+
     this.setState({
       score: this.state.score + 10,
     });
@@ -33,7 +40,7 @@ class App extends Component {
 
     this.setState({
       current: nextActive,
-      pace: (this.state.pace *= 0.95),
+      pace: this.state.pace * 0.95,
     });
 
     this.timer = setTimeout(this.nextCircle, this.state.pace);
@@ -76,7 +83,7 @@ class App extends Component {
               key={c.id}
               color={c.color}
               id={c.id}
-              click={this.clickHandler}
+              click={() => this.clickHandler(c.id)}
               active={this.state.current === c.id}
             />
           ))}
