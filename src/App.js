@@ -4,6 +4,12 @@ import Circle from "./Circle";
 import GameOver from "./GameOver";
 import { circles } from "./circles";
 
+import startSound from "./assets/sounds/bg.mp3";
+import endSound from "./assets/sounds/gameover.mp3";
+
+let gameStartSound = new Audio(startSound);
+let gameEndSound = new Audio(endSound);
+
 const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -59,6 +65,7 @@ class App extends Component {
   };
 
   startHandler = () => {
+    gameStartSound.play();
     this.nextCircle();
     this.setState({
       gameStart: true,
@@ -66,6 +73,8 @@ class App extends Component {
   };
 
   stopHandler = () => {
+    gameStartSound.pause();
+    gameEndSound.play();
     clearTimeout(this.timer);
 
     this.setState({
@@ -100,6 +109,7 @@ class App extends Component {
               id={c.id}
               click={() => this.clickHandler(c.id)}
               active={this.state.current === c.id}
+              disabled={this.state.gameStart}
             />
           ))}
         </div>

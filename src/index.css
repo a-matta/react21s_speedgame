@@ -45,6 +45,11 @@ p {
   justify-content: center;
   margin: 1rem;
   color: white;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgb(72, 72, 72);
+}
+.circle:active {
+  box-shadow: inset 0 0 40px rgb(96, 96, 96);
 }
 
 .circle p {
@@ -52,6 +57,5 @@ p {
 }
 
 .active {
-  box-shadow: 0 0 25px yellow;
-  border: 25px solid yellow;
+  box-shadow: 0 0 25px rgb(0, 0, 0);
 }
