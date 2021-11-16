@@ -33,7 +33,7 @@ class App extends Component {
 
     this.setState({
       current: nextActive,
-      state: (this.state.pace *= 0.95),
+      pace: (this.state.pace *= 0.95),
     });
 
     this.timer = setTimeout(this.nextCircle, this.state.pace);
