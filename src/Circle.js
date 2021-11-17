@@ -9,9 +9,7 @@ const Circle = (props) => {
       }}
       className={`circle ${props.active ? "active" : ""}`}
       onClick={props.click}
-    >
-      <p> {props.id}</p>
-    </div>
+    ></div>
   );
 };
 

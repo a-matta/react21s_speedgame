@@ -4,11 +4,14 @@ import Circle from "./Circle";
 import GameOver from "./GameOver";
 import { circles } from "./circles";
 
-import startSound from "./assets/sounds/bg.mp3";
+import click from "./assets/sounds/click.wav";
+
+let clickSound = new Audio(click);
+/* import startSound from "./assets/sounds/bg.mp3";
 import endSound from "./assets/sounds/gameover.mp3";
 
 let gameStartSound = new Audio(startSound);
-let gameEndSound = new Audio(endSound);
+let gameEndSound = new Audio(endSound); */
 
 const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -26,7 +29,17 @@ class App extends Component {
 
   timer = undefined;
 
+  clickPlay = () => {
+    if (clickSound.paused) {
+      clickSound.play();
+    } else {
+      clickSound.currentTime = 0;
+    }
+  };
+
   clickHandler = (id) => {
+    this.clickPlay();
+
     console.log("you clicked: ", id);
 
     if (this.state.current !== id) {
@@ -65,16 +78,17 @@ class App extends Component {
   };
 
   startHandler = () => {
-    gameStartSound.play();
-    this.nextCircle();
+    /*     gameStartSound.play();
+        clickSound.loop = true; 
+     */ this.nextCircle();
     this.setState({
       gameStart: true,
     });
   };
 
   stopHandler = () => {
-    gameStartSound.pause();
-    gameEndSound.play();
+    /*     gameStartSound.pause();
+    gameEndSound.play(); */
     clearTimeout(this.timer);
 
     this.setState({
